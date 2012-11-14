@@ -24,7 +24,11 @@ function Awake(){
 }
 
 function GarbageCollector(){
-	
+	var deleteall:GameObject[] = GameObject.FindGameObjectsWithTag("Entities");
+	for(var i:int = 0 ; i < deleteall.length ; i++){
+		if(deleteall[i].name!="goBull"&&deleteall[i].name!="goNerd")
+			Destroy(deleteall[i].gameObject);
+	}
 }
 
 function Start(){
@@ -33,12 +37,12 @@ function Start(){
 	
 	//goNerd.GetComponent.<EachEntity>().Init("Nerd",0); 
 	ScoreDaemon.AddNerd(1); 
-	 goNerd.transform.position = Vector3(-9999,-9999,-9999);
+	 goNerd.transform.position = Vector3(-99999,-9999,-9999);
 	oNerd = Instantiate(goNerd,posNerd,Quaternion.identity) as GameObject; oNerd.GetComponent.<EachEntity>().Init("Nerd",0); oNerd.transform.position = posNerd; oNerd.name="Nerd";
 	
 	//goBull.GetComponent.<EachEntity>().Init("Bull",0); 
 	ScoreDaemon.AddBull(1);
-	 goBull.transform.position = Vector3(-9999,9999,-9999);
+	 goBull.transform.position = Vector3(-99999,9999,-9999);
 	oBull = Instantiate(goBull,posBull,Quaternion.identity) as GameObject; oBull.GetComponent.<EachEntity>().Init("Bull",0); oBull.transform.position = posBull; oBull.name="Bull";
 	
 	GenRects(4); // rect positions for 4 buttons
